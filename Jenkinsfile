@@ -6,7 +6,7 @@ def GIT_COMMIT_HASH
 pipeline {
   agent any
   environment {
-    PATH=""/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+    PATH="/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
   }
   stages {
     stage('Checkout Source Code and Logging Into Registry') {
