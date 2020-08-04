@@ -20,7 +20,7 @@ pipeline {
       steps {
         echo 'Starting to build the project builder docker image'
         script {
-          sh "echo $GIT_COMMIT_HASH"
+          sh "echo ${GIT_COMMIT_HASH}"
         }
       }
     }
