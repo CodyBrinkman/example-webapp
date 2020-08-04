@@ -21,7 +21,7 @@ pipeline {
         echo 'Starting to build the project builder docker image'
         script {
           sh "echo hi"
-          builderImage = docker.build("${ACCOUNT_REGISTRY_PREFIX}/example-webapp-builder:51cf4f8d5415dd5bc849269ead75021e0feb81f8", "-f ./Dockerfile.builder .")
+          builderImage = docker.build("codybrinkman/example-webapp-builder:51cf4f8d5415dd5bc849269ead75021e0feb81f8", "-f ./Dockerfile.builder .")
         }
       }
     }
