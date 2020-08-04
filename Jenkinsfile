@@ -10,7 +10,17 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
-          ACCOUNT_REGISTRY_PREFIX = "https://hub.docker.com/repository/docker/codybrinkman/example-webapp"
+          GIT_COMMIT_HASH = sh "git rev-parse HEAD"
+          ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
+        }
+      }
+    }
+
+    stage('Make A Builder Image') {
+      steps {
+        echo 'Starting to build the project builder docker image'
+        script {
+          sh "echo $GIT_COMMIT_HASH"
         }
       }
     }
