@@ -5,6 +5,9 @@ def GIT_COMMIT_HASH
 
 pipeline {
   agent any
+  environment {
+    PATH=/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+  }
   stages {
     stage('Checkout Source Code and Logging Into Registry') {
       steps {
@@ -21,7 +24,6 @@ pipeline {
         echo 'Starting to build the project builder docker image'
         script {
           sh "whoami"
-          sh "export PATH=/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
           sh "echo $PATH"
           builderImage = docker.build("codybrinkman/example-webapp-builder:51cf4f8d5415dd5bc849269ead75021e0feb81f8", "-f ./Dockerfile.builder .")
         }
