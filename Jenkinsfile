@@ -10,6 +10,7 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
+          export $PATH = /Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
           GIT_COMMIT_HASH = sh "git rev-parse HEAD"
           ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
         }
