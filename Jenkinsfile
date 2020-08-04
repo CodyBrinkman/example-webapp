@@ -10,7 +10,6 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
-          sh "export PATH=/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
           GIT_COMMIT_HASH = sh "git rev-parse HEAD"
           ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
         }
@@ -22,6 +21,7 @@ pipeline {
         echo 'Starting to build the project builder docker image'
         script {
           sh "whoami"
+          sh "export PATH=/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
           sh "echo $PATH"
           builderImage = docker.build("codybrinkman/example-webapp-builder:51cf4f8d5415dd5bc849269ead75021e0feb81f8", "-f ./Dockerfile.builder .")
         }
