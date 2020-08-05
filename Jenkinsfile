@@ -13,9 +13,7 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
-          GIT_COMMIT_HASH = sh (
-            script: "git rev-parse HEAD",
-            returnStdout: true)
+          GIT_COMMIT_HASH = 123
           ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
         }
       }
