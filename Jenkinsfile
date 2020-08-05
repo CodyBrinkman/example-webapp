@@ -27,7 +27,7 @@ pipeline {
         script {
           sh "whoami"
           sh "echo $PATH"
-          builderImage = docker.build("codybrinkman/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+          builderImage = docker.build("codybrinkman/example-webapp-builder:1", "-f ./Dockerfile.builder .")
         }
       }
     }
