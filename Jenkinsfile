@@ -29,5 +29,17 @@ pipeline {
         }
       }
     }
+
+    stage('Deploy to Production fixed server') {
+      when {
+        branch 'release'
+      }
+      steps {
+        echo 'deploying release to production'
+        script {
+          sh "echo hi it worked"
+        }
+      }
+    }
   }
 }
