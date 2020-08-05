@@ -6,7 +6,6 @@ def GIT_COMMIT_HASH
 pipeline {
   agent any
   environment {
-    GIT_COMMIT_HASH = sh "git rev-parse HEAD"
     PATH="/Users/clbrinkm/bin:/Users/clbrinkm/opt/anaconda2/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
   }
   stages {
@@ -14,6 +13,9 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
+          GIT_COMMIT_HASH = sh (
+            script: "git rev-parse HEAD",
+            returnStdout: true)
           ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
         }
       }
