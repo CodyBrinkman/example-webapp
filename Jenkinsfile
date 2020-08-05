@@ -13,7 +13,9 @@ pipeline {
       steps {
         echo 'Logging Into the Private Registry'
         script {
-          GIT_COMMIT_HASH = 123
+          GIT_COMMIT_HASH = sh (
+            script: "git rev-parse HEAD",
+            returnStdout: true)
           ACCOUNT_REGISTRY_PREFIX = "codybrinkman"
         }
       }
@@ -25,8 +27,7 @@ pipeline {
         script {
           sh "whoami"
           sh "echo $PATH"
-          sh "echo ${GIT_COMMIT_HASH}"
-          builderImage = docker.build("codybrinkman/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
+          builderImage = docker.build("codybrinkman/example-webapp-builder:123", "-f ./Dockerfile.builder .")
         }
       }
     }
@@ -39,6 +40,24 @@ pipeline {
         echo 'deploying release to production'
         script {
           sh "echo hi it worked"
+        }
+      }
+    }
+
+    stage('Integration Tests') {
+      steps {
+        echo 'Testing...'
+        script {
+          sh """
+            curl -v localhost:3000 | grep '<title>Welcome to example-webapp</title>'
+            if [ \$? -eq 0 ]
+            then
+              echo test pass
+            else
+              echo test failed
+              exit 1
+            fi
+          """
         }
       }
     }
